@@ -1,10 +1,10 @@
 function isWeekend(){
 
     const todayDate = new Date();
-    const day = todayDate.getDay();	// 0 - 6 (0 is sunday)
-    const days = ['weekend','weekday', 'weekday', 'weekday'];
+    const day = 6;//todayDate.getDay();	// 0 - 6 (0 is sunday)
+    const days = ['weekend','weekday'];
 
-    console.log( days[ 7 % (day+1) ] );
+    console.log( days[ Math.floor(Math.sqrt(7 % (day+1))) ] );
 
 }
 
