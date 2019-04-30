@@ -81,6 +81,6 @@
     }
 
     "what a stupid idea".filterWords(['shit','danm','stupid']);
-    // outPut:  what a *** idea
+    /* outPut:  what a *** idea*/
 
 })();
