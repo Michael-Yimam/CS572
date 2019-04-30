@@ -83,4 +83,39 @@
     "what a stupid idea".filterWords(['shit','danm','stupid']);
     /* outPut:  what a *** idea*/
 
+
+
+
+
+
+    /**
+     *  Filter words using Observable
+     */
+
+    String.prototype.filterWords = function(bannedWords){
+
+        const { from } = rxjs;
+        const { map, reduce } = rxjs.operators;
+
+        from(this.split(" "))
+            .pipe(
+                map((n) => {
+                    if(!bannedWords.includes(n))
+                        return n;
+                    else
+                        return '***';
+                }),
+                reduce((result, str) => { return result + " " + str;}, "")
+            )
+            .subscribe(
+                (x) => console.log(x),
+                null,
+                () => console.log('done')
+            )
+
+    }
+
+    "my name is idiot".filterWords(['shit', 'idiot']);
+    /* outPut:  my name is *** */
+
 })();
