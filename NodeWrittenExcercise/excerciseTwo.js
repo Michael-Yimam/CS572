@@ -6,7 +6,7 @@ Array.prototype.even = function(){
             even.push(x);
     }
     return even;
-}
+};
 
 Array.prototype.odd = function(){
     let odd = [];
@@ -16,7 +16,7 @@ Array.prototype.odd = function(){
             odd.push(x);
     }
     return odd;
-}
+};
 
-[2,3,4,5,6].even();
-[2,3,4,5,6].odd();
+console.log([2,3,4,5,6].even());
+console.log([2,3,4,5,6].odd());
