@@ -17,3 +17,6 @@ Array.prototype.odd = function(){
     }
     return odd;
 }
+
+[2,3,4,5,6].even();
+[2,3,4,5,6].odd();
