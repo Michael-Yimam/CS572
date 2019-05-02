@@ -27,7 +27,7 @@
 
     String.prototype.filterWords = function(bannedWords){
 
-        const promise = Promise((resolve, reject) => {
+        const promise = new Promise((resolve, reject) => {
 
             let result = this;
             for(let word of bannedWords){
