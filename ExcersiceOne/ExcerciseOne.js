@@ -94,8 +94,8 @@
 
     String.prototype.filterWords = function(bannedWords){
 
-        const { from } = rxjs;
-        const { map, reduce } = rxjs.operators;
+        const { from } = 'rxjs';
+        const { map, reduce } = 'rxjs';
 
         from(this.split(" "))
             .pipe(
