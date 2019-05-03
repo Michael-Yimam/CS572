@@ -10,7 +10,6 @@ process.on('message', (m) => {
             data += chunk.toString();
         })
         .on('end', function(){
-            console.log(data);
             process.send(data);
         });
 
