@@ -48,3 +48,12 @@ server.listen(1616);
 // Time To First Byte
 // 900ms in Chrome
 // 400ms in Mozilla
+
+/**
+ * What I believe caused the slow response ofr these way of reading a file is that;
+ * since we are using synchronous way of reading file, the code that reads the file
+ * have to wait for the stack to be empty, which might take long time if there are
+ * lots of frames in the stack. But in synchronous file reading, the code will be
+ * inserted to the stack frame without waiting.
+ *
+ */
