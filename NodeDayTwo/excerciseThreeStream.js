@@ -9,8 +9,7 @@ function readFile(obj){
 
     const file = fs.createReadStream('./book.pdf');
     obj.res.writeHeader(200, {'Content-Type':'application/pdf'});
-
-            file.pipe(obj.res);
+    file.pipe(obj.res);
 
 }
 
