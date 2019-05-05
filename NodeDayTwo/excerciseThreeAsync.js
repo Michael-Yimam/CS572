@@ -2,16 +2,31 @@ const http = require('http');
 const fs = require('fs');
 const { Subject } = require('rxjs');
 
+const server = http.createServer();
 const subject$ = new Subject();
 
-async function readFile(){
-    const file = await fs.readFile('./book.pdf');
-    return file;
+
+function getFile(){
+    return new Promise(function(resolve, reject){
+
+        fs.readFile('./book.pdf', function(err, data){
+
+            if(err)
+            {
+                reject(err);
+                return;
+            }
+
+            resolve(data);
+        });
+
+    });
 }
 
-function sendFile(obj){
+function sendFile(obj) {
+
     obj.res.writeHead(200, {'Content-Type': 'application/pdf'});
-    obj.res.end(readFile());
+    getFile().then((data) => {obj.res.end(data)}).catch(err => {console.log(err)});
 }
 
 subject$.subscribe(sendFile);
@@ -24,10 +39,12 @@ server.on('request', (request, response) => {
         return;
     }
 
-    subject$.next({'req':request, 'res':response});
+    subject$.next({req:request, res:response});
 
 });
 
 server.listen(1616);
 
-subject$.subscribe();
+// Time To First Byte
+// 900ms in Chrome
+// 400ms in Mozilla

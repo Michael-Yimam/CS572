@@ -17,8 +17,8 @@ server.on('request', (request, response) => {
 
 });
 
-server.listen(1616);
+server.listen(3000);
 
-// Response took an average of
-// 200ms in Chrome
-// 2000ms in Mozillar
+// Time To First Byte
+// 100ms in Chrome
+// 100ms in Mozilla
