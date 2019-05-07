@@ -25,6 +25,9 @@ app.get('/users', function(request, response){
      */
     response.setHeader('Cache-Control', 'private, maxage=86400, s-maxage=0');
     response.contentType('application/json');
+    response.set("Link", "/users?page=2");
+    response.set('X-Total-Count', 2);
+
 
     getRandomUsers()
         .then( data => {
