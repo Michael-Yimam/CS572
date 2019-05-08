@@ -3,6 +3,8 @@
  * @type {createApplication}
  */
 const fs = require('fs');
+const os = require('os');
+const https = require('https');
 const morgan = require('morgan');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -15,7 +17,7 @@ const app = express();
 const port = 3000;
 const studentGrades = [];
 const accessLogStream = fs.createWriteStream(__dirname + '/access.log', { flags: 'a' });
-
+const homeDir = os.homedir();
 
 
 /**
@@ -72,12 +74,14 @@ app.get('/grades/:id', (req, res, next) => {
 
 
 
+
 /**
  * middleware to parse post body
  */
 app.use('/grades', bodyParser.json(), (req, res, next) => {
     next();
 });
+
 
 
 
@@ -99,6 +103,7 @@ app.post('/grades', (req, res, next) => {
     }
 
 });
+
 
 
 
@@ -125,6 +130,18 @@ app.put('/grades', (req, res, next) => {
     }
 
 });
+
+
+/**
+ * delete student record
+ */
+app.delete('/grades/:id', (req, res, next) => {
+
+
+
+});
+
+
 /**
  * error handling middleware
  */
@@ -139,20 +156,26 @@ app.use((err, req, res, next) => {
  */
 app.use((req, res, next) => {
 
-    try{
-        let student = req.body;
-        //console.log("data: " + JSON.stringify(student));
-        for(let st of student){
-            console.log(st);
-        }
-    }catch(err){
-        console.log('error happened');
-        res.status(500).end("error happend. sorry!");
-    }
+    // try{
+    //     let student = req.body;
+    //     //console.log("data: " + JSON.stringify(student));
+    //     for(let st of student){
+    //         console.log(st);
+    //     }
+    // }catch(err){
+    //     console.log('error happened');
+    //     res.status(500).end("error happend. sorry!");
+    // }
     res.status(200).end('its okay');
 });
 
 
+// create secure
+// https.createServer({
+//     key: fs.readFileSync(homeDir + '/server.key'),
+//     cert: fs.readFileSync(homeDir + '/server.cert')
+// }, app).listen(port, () => {
+//     console.log('listening...');
+// });
 
-// listen to port
 app.listen(port);
