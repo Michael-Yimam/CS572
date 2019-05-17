@@ -1,0 +1,12 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<app-counter></app-counter>
+
+<br><br>
+<input #parentInput type="number" (click)="numberUpdated(parentInput.value)" (keyup)="numberUpdated(parentInput.value)">
+<br><br>
+
+<app-counter [counter]="inputValue"></app-counter><br><br>
+
+
+<app-counter (counterChange)="counterChanged($event)"></app-counter>
+<p>Component Counter Value = {{ ComponentCounterValue }}</p>
